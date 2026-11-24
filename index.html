@@ -28,21 +28,26 @@
     .row { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; }
     .grp { display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
     label.fld { display:inline-flex; align-items:center; gap:7px; font-size:.78rem; color:var(--mut); font-weight:500; }
-    input[type=text],input[type=number] { background:var(--in); border:1px solid var(--bd); color:#f8fafc; font:500 .78rem var(--fm); padding:6px 9px; border-radius:7px; width:136px; }
+    input[type=text],input[type=number] { background:var(--in); border:1px solid var(--bd); color:#f8fafc; font:500 .78rem var(--fm); padding:6px 9px; border-radius:7px; width:136px; transition:.15s; }
     input[type=number] { width:86px; }
     input:focus { outline:none; border-color:var(--c); }
-    label.chk { display:inline-flex; align-items:center; gap:7px; padding:6px 10px; border-radius:7px; border:1px solid var(--bd); background:var(--in); font-size:.78rem; color:#cbd5e1; cursor:pointer; }
+    input:disabled { opacity:.5; cursor:not-allowed; }
+    label.chk { display:inline-flex; align-items:center; gap:7px; padding:6px 10px; border-radius:7px; border:1px solid var(--bd); background:var(--in); font-size:.78rem; color:#cbd5e1; cursor:pointer; user-select:none; transition:.15s; }
     label.chk.arm { border-color:#f43f5e88; background:#f43f5e1f; color:#fecdd3; }
     label.chk input { accent-color:var(--r); cursor:pointer; }
     .div { height:1px; background:var(--bd2); margin:10px 0; }
-    .btn { display:inline-flex; align-items:center; gap:5px; font:600 .78rem var(--fd); padding:7px 13px; border-radius:8px; border:1px solid var(--bd); background:var(--sf2); color:var(--ink); cursor:pointer; white-space:nowrap; transition:.15s; }
+    .btn { display:inline-flex; align-items:center; gap:6px; font:600 .78rem var(--fd); padding:8px 14px; border-radius:8px; border:1px solid var(--bd); background:var(--sf2); color:var(--ink); cursor:pointer; white-space:nowrap; transition:transform .14s cubic-bezier(.16,1,.3,1),border-color .15s,box-shadow .2s,background .15s; }
     .btn:hover:not(:disabled) { transform:translateY(-1px); border-color:#38bdf899; }
+    .btn:active:not(:disabled) { transform:translateY(0); }
     .btn:disabled { opacity:.4; cursor:not-allowed; }
-    .btn-go { background:var(--g); color:#032016; border-color:transparent; }
-    .btn-go.play { background:var(--w); color:#241502; }
+    .btn-go { background:linear-gradient(135deg,#10b981,#38bdf8); color:#031c16; border-color:transparent; box-shadow:0 4px 16px -4px #10b98166; }
+    .btn-go:hover:not(:disabled) { box-shadow:0 6px 22px -4px #38bdf888; border-color:transparent; }
+    .btn-go.play { background:linear-gradient(135deg,#f59e0b,#fbbf24); color:#241502; box-shadow:0 0 0 0 #f59e0b88; animation:ap 1.5s infinite; }
+    @keyframes ap { 50% { box-shadow:0 0 0 6px #f59e0b00, 0 4px 18px -2px #f59e0b66; } }
     .spd { display:inline-flex; align-items:center; gap:8px; font-size:.76rem; color:var(--mut); }
     .spd input { width:104px; accent-color:var(--c); cursor:pointer; }
     .num { font-family:var(--fm); font-variant-numeric:tabular-nums; color:#e2e8f0; }
+    .kbd { font:600 .68rem var(--fm); color:var(--dim); }
     .rail { height:5px; background:var(--in); border-radius:99px; overflow:hidden; margin-top:10px; border:1px solid var(--bd2); }
     .rail i { display:block; height:100%; width:0; background:linear-gradient(90deg,var(--m),var(--c),var(--g)); transition:width .3s cubic-bezier(.16,1,.3,1); }
     .tease { margin-top:9px; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 12px; border:1px dashed #818cf873; border-radius:9px; background:#818cf80f; font-size:.82rem; cursor:pointer; }
@@ -53,21 +58,21 @@
     .cpu { margin-top:10px; padding:11px; border:1px solid var(--bd); border-radius:10px; background:var(--in); display:grid; grid-template-columns:1fr; gap:7px; }
     @media(min-width:720px) { .cpu { grid-template-columns:1fr 1fr; } }
     .cpu-hdr { grid-column:1/-1; display:flex; justify-content:space-between; font:600 .72rem var(--fm); color:var(--mut); text-transform:uppercase; letter-spacing:.04em; }
-    .ring-tag { color:var(--c); } .ring-tag.k { color:var(--r); }
+    .ring-tag { color:var(--c); } .ring-tag.k { color:var(--m); }
     .seg { position:relative; display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--bd); border-radius:8px; overflow:hidden; background:#050810; font:600 .72rem var(--fm); text-align:center; }
     .seg span { position:relative; z-index:1; padding:6px 4px; color:var(--dim); transition:color .2s; }
     .seg span.act { color:#f8fafc; }
     .seg i { position:absolute; inset:0 50% 0 0; background:#38bdf838; border-right:1px solid #38bdf873; transition:transform .32s cubic-bezier(.22,1,.36,1),background .2s; }
-    .seg.k i { background:#f43f5e3d; border-color:#f43f5e80; }
+    .seg.k i { background:#818cf842; border-color:#818cf888; }
     .stg { grid-column:1/-1; grid-template-columns:repeat(5,1fr); }
     .stg i { inset:0 80% 0 0; border-right:none; border-bottom:2px solid var(--c); opacity:0; transition:transform .13s cubic-bezier(.22,1,.36,1),opacity .15s; }
-    .stg.k i { background:#f43f5e3d; border-bottom-color:var(--r); }
+    .stg.k i { background:#818cf842; border-bottom-color:var(--m); }
     .regs { grid-column:1/-1; display:grid; grid-template-columns:repeat(2,1fr); gap:6px; font:500 .74rem var(--fm); font-variant-numeric:tabular-nums; }
     @media(min-width:780px) { .regs { grid-template-columns:repeat(4,1fr); } }
     .reg { display:flex; justify-content:space-between; gap:8px; padding:5px 9px; border:1px solid var(--bd2); border-radius:7px; background:var(--sf); min-width:0; }
     .reg em { font-style:normal; color:var(--dim); }
     .reg b { color:#f1f5f9; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-    .reg b.k { color:#fda4af; }
+    .reg b.k { color:#c7d2fe; }
     .reg-flash { animation:rf .28s ease; } @keyframes rf { 0%{opacity:.3;transform:translateY(-2px)} }
     .stage-shell { position:relative; margin-top:10px; border:1px solid var(--bd); border-radius:11px; background:#060a13; background-image:linear-gradient(to right,#23304a38 1px,transparent 1px),linear-gradient(to bottom,#23304a38 1px,transparent 1px); background-size:26px 26px; padding:16px 14px; overflow:hidden; min-height:275px; }
     .bbar { position:relative; z-index:2; display:flex; justify-content:space-between; font:600 .68rem var(--fm); color:var(--dim); margin-bottom:12px; text-transform:uppercase; letter-spacing:.04em; }
@@ -92,7 +97,7 @@
     .mhdr { display:flex; justify-content:space-between; color:var(--mut); font-size:.67rem; margin-bottom:5px; }
     .htrk { display:flex; flex-wrap:wrap; gap:4px; min-height:24px; align-items:center; }
     .hcell { padding:2px 5px; border-radius:4px; background:#38bdf829; border:1px solid #38bdf866; color:#bae6fd; font-weight:600; animation:ci .22s ease; } @keyframes ci { from{opacity:0;transform:scale(.75)} }
-    .srow { display:flex; justify-content:space-between; padding:2px 0; }
+    .srow { display:flex; justify-content:space-between; gap:8px; padding:2px 0; }
     .spill { font-weight:700; font-variant-numeric:tabular-nums; } .spill.lk { color:var(--w); } .spill.op { color:var(--g); } .spill.off { color:var(--r); }
     .ptl { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:7px; font:500 .66rem var(--fm); }
     .pti { padding:4px 5px; border-radius:6px; border:1px solid var(--bd2); background:#0a101d; color:var(--mut); text-align:center; }
@@ -111,7 +116,8 @@
     .phdr h2 { margin:0; font:700 .9rem var(--fd); color:#f8fafc; }
     .pmeta { font:500 .72rem var(--fm); color:var(--mut); }
     pre.code { margin:0; background:#050810; border:1px solid var(--bd2); border-radius:9px; padding:7px 0; font:400 .75rem/1.6 var(--fm); overflow-x:auto; }
-    .cl { display:flex; gap:10px; padding:1px 11px; color:var(--dim); white-space:pre; transition:.15s; }
+    .cl { display:flex; gap:10px; padding:1px 11px; color:var(--dim); white-space:pre; transition:.15s; cursor:pointer; }
+    .cl:hover { background:#ffffff07; color:#cbd5e1; }
     .cl .ln { width:16px; text-align:right; font-size:.68rem; color:#475569; user-select:none; }
     .cl.on { background:#38bdf824; color:#e0f2fe; font-weight:500; } .cl.on .ln { color:var(--c); font-weight:700; }
     #log { background:#050810; border:1px solid var(--bd2); border-radius:9px; padding:9px 11px; font:400 .74rem/1.55 var(--fm); max-height:275px; overflow-y:auto; }
@@ -134,15 +140,18 @@
         <div class="grp" id="inputs"></div>
         <div class="grp">
           <button class="btn btn-go" id="playBtn" onclick="togglePlay()">▶ Auto play</button>
-          <button class="btn" id="nextBtn" onclick="next()">Next ⏭</button>
           <button class="btn" id="backBtn" onclick="back()">⏮ Back</button>
-          <button class="btn" onclick="load(mode,true)">↺ Reset</button>
+          <button class="btn" id="nextBtn" onclick="next()">Next ⏭</button>
+          <button class="btn" onclick="load(mode)">↺ Reset</button>
         </div>
       </div>
       <div class="div"></div>
       <div class="row">
-        <label class="spd">Speed <input type="range" id="spd" min="500" max="2600" step="100" value="1400" oninput="$('spdVal').textContent=this.value+' ms'"><span class="num" id="spdVal">1400 ms</span></label>
-        <span class="num" style="font-size:.76rem;color:var(--mut)" id="stepCount">Step 0 / 7</span>
+        <div class="grp">
+          <label class="spd">Speed <input type="range" id="spd" min="500" max="2600" step="100" value="1400" oninput="$('spdVal').textContent=this.value+' ms'"><span class="num" id="spdVal">1400 ms</span></label>
+          <span class="kbd">Space: play · ←/→: step · R: reset</span>
+        </div>
+        <span class="num" style="font-size:.76rem;color:var(--mut)" id="stepCount">Step 0 / 7 · Ready</span>
       </div>
       <div class="rail"><i id="bar"></i></div>
       <div class="tease" id="tease" onclick="this.classList.add('rev')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.add('rev')}" role="button" tabindex="0">
@@ -160,7 +169,7 @@
         </div>
       </div>
       <div class="stage-shell" id="stageWrap">
-        <div class="bbar"><span>User Space · Process 1</span><span class="mid" id="midBoundary">Kernel Ring 0</span><span>User Space · Process 2</span></div>
+        <div class="bbar"><span>User Space · Process 1</span><span class="mid" id="midBoundary">Pipe (kernel buffer)</span><span>User Space · Process 2</span></div>
         <svg id="stage-svg" aria-hidden="true"></svg>
         <div class="nodes" id="stage"></div>
         <div id="fx"></div>
@@ -168,13 +177,13 @@
       </div>
     </div>
     <div class="bgrid">
-      <div class="card"><div class="phdr"><h2>C code (live)</h2><span class="pmeta" id="lineMeta">Ready</span></div><pre class="code" id="code"></pre></div>
+      <div class="card"><div class="phdr"><h2>C code (live)</h2><span class="pmeta" id="lineMeta">Click line to jump</span></div><pre class="code" id="code"></pre></div>
       <div class="card"><div class="phdr"><h2>Execution trace</h2><span class="pmeta" id="traceCount">0 steps</span></div><div id="log"></div></div>
     </div>
   </div>
   <script>
     const $=id=>document.getElementById(id), wait=ms=>new Promise(r=>setTimeout(r,ms)), esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    let mode=0, idx=0, busy=false, playing=false, gen=0, pipeTimers=[];
+    let mode=0, idx=0, busy=false, playing=false, gen=0, playId=0, pipeTimers=[];
     const saved=[{payload:'Hello Mars!'},{msg:'Moon base',code:'2026',nosem:false}];
     const val=(k,d)=>{ const el=$('in_'+k); if(el){ const v=el.type==='checkbox'?el.checked:String(el.value).trim(); saved[mode][k]=v; return el.type==='checkbox'?v:(v||d); } return saved[mode][k]??d; };
     const nos=()=>Boolean(val('nosem',false));
@@ -185,10 +194,10 @@
     const MODES=[
       {
         story:'<b>Pipe = kernel ring buffer.</b> <code>pipe()</code> asks the kernel for a 64 KiB buffer and returns two file descriptors. Process 1 <code>write()</code>s bytes <i>user space → kernel</i>, Process 2 <code>read()</code>s them <i>kernel → user space</i> in FIFO order. Every byte is copied twice; the kernel is the middleman.',
-        bnd:'Kernel Ring 0 · 2 Copies',
+        bnd:'Pipe (kernel buffer) · 2 Copies',
         inputs:()=>`<label class="fld">Payload <input id="in_payload" type="text" maxlength="14" value="${esc(saved[0].payload)}" oninput="saved[0].payload=this.value"></label>`,
         code:['int fd[2]; pipe(fd);          // fd[0]=3, fd[1]=4','pid_t pid = fork();','if (pid > 0) {   // PROCESS 1','  close(fd[0]);','  write(fd[1], msg, len);','  close(fd[1]); wait(NULL);','} else {         // PROCESS 2','  close(fd[1]);','  read(fd[0], buf, size);','}'],
-        nodes:()=>node('P','P1','PID 1001','Process 1','Parent · writer','● RUNNING','fd table: { 0, 1, 2 }','','hi')+node('K','KERNEL','ring · head → tail','Pipe buffer','','○ UNALLOCATED','not allocated','<div class="mbox"><div class="mhdr"><span>ASCII Hex Ring</span><span id="Kcap">0 / 65536 B</span></div><div class="htrk" id="pb"><span style="color:var(--dim)">empty</span></div></div>')+node('C','P2','PID 1002','Process 2','Child · reader','○ NEW','awaiting fork()','','hide'),
+        nodes:()=>node('P','P1','PID 1001','Process 1','Parent · writer','● RUNNING','fd table: { 0, 1, 2 }','','hi')+node('K','KERNEL','ring · head → tail','Pipe buffer','','○ UNALLOCATED','not allocated','<div class="mbox"><div class="mhdr"><span>Pipe buffer (hex)</span><span id="Kcap">0 / 65536 B</span></div><div class="htrk" id="pb"><span style="color:var(--dim)">empty</span></div></div>')+node('C','P2','PID 1002','Process 2','Child · reader','○ NEW','awaiting fork()','','hide'),
         steps:[
           [0,'pipe(fd) = 0 → kernel allocates a ring buffer (struct pipe_inode_info) and installs fd[0]=3 (read end), fd[1]=4 (write end) in the fd table.','Which syscall allocates memory inside the kernel?','ok',async()=>{ hi('K'); wave('K'); setSt('Kt','● ALLOCATED',''); $('Ks').textContent='fd 3 = R · fd 4 = W · refcount = 2'; $('Ps').textContent='PID 1001 · fd { 3:R, 4:W }'; }],
           [1,'fork() → kernel copies the PCB (task_struct) with copy-on-write pages. Process 2 gets PID 1002 and an identical fd table {3,4}. Pipe refcount = 4.','One process is about to become two…','warn',async()=>{ hi('P'); wave('P'); pop('C'); setSt('Ct','▲ READY','warn'); $('Cs').textContent='PID 1002 · fd { 3:R, 4:W }'; await wait(220); setSt('Ct','● RUNNING',''); hi('C'); }],
@@ -201,20 +210,20 @@
       },
       {
         story:'<b>Shared memory = same physical page, two page tables.</b> <code>mmap(MAP_SHARED)</code> maps one physical frame into both processes, so data needs <i>zero kernel copies</i>. But there is no ordering, so we add a <b>semaphore</b> (<code>sem_t</code>, implemented with <code>futex</code>). Tick the box to see a race condition.',
-        bnd:'Physical RAM · 0 Copies',
+        bnd:'Shared memory + semaphore · 0 Copies',
         inputs:()=>`<label class="fld">msg <input id="in_msg" type="text" maxlength="12" value="${esc(saved[1].msg)}" oninput="saved[1].msg=this.value"></label><label class="fld">code <input id="in_code" type="number" value="${esc(saved[1].code)}" oninput="saved[1].code=this.value"></label><label class="chk ${saved[1].nosem?'arm':''}" id="chkLbl"><input id="in_nosem" type="checkbox" ${saved[1].nosem?'checked':''} onchange="saved[1].nosem=this.checked;$('chkLbl').classList.toggle('arm',this.checked)"><span>Disable semaphore (race condition)</span></label>`,
         code:['shm = mmap(NULL, size, PROT_READ|PROT_WRITE,','        MAP_SHARED|MAP_ANONYMOUS, -1, 0);','sem_init(&shm->sem, 1, 0);   // value 0','pid_t pid = fork();','P2:  sem_wait(&shm->sem);  // futex WAIT','P1:  strcpy(shm->message, text);','P1:  shm->secret_code = num;','P1:  sem_post(&shm->sem);  // futex WAKE','P2:  printf(shm->message, shm->secret_code);','sem_destroy(); munmap(shm, size);'],
-        nodes:()=>node('P','P1','PID 1001','Process 1','Parent · writer','● RUNNING','VA 0x7f3a1000 → unmapped','','hi')+node('M','SHARED RAM','PFN 0x1a2b','Physical Page (4 KiB)','','○ UNMAPPED','awaiting mmap()','<div class="mbox"><div class="srow"><span style="color:var(--mut)">shm-&gt;sem</span><span class="spill lk" id="lk">—</span></div><div class="srow"><span style="color:var(--mut)">struct</span><span id="Ms">{ msg: "", code: 0 }</span></div></div><div class="ptl"><div class="pti" id="pt1">P1 PTE → —</div><div class="pti" id="pt2">P2 PTE → —</div></div>','hide')+node('C','P2','PID 1002','Process 2','Child · reader','○ NEW','awaiting fork()','','hide'),
+        nodes:()=>node('P','P1','PID 1001','Process 1','Parent · writer','● RUNNING','VA 0x7f3a1000 → unmapped','','hi')+node('M','SHARED RAM','PFN 0x1a2b','Shared memory + semaphore','','○ UNMAPPED','awaiting mmap()','<div class="mbox"><div class="srow"><span style="color:var(--mut)">shm-&gt;sem</span><span class="spill lk" id="lk">—</span></div><div class="srow"><span style="color:var(--mut)">struct</span><span id="Mdata">{ msg: "", code: 0 }</span></div></div><div class="ptl"><div class="pti" id="pt1">P1 PTE → —</div><div class="pti" id="pt2">P2 PTE → —</div></div>','hide')+node('C','P2','PID 1002','Process 2','Child · reader','○ NEW','awaiting fork()','','hide'),
         steps:[
-          [0,'mmap(MAP_SHARED|MAP_ANONYMOUS) → kernel allocates 1 physical frame (PFN 0x1a2b) and maps it at VA 0x7f3a1000, zero-filled.','Where does shared data actually live?','',async()=>{ pop('M'); hi('M'); setSt('Mt','● MAPPED (PFN 0x1a2b)',''); $('Ps').textContent='VA 0x7f3a1000 → PFN 0x1a2b'; $('pt1').textContent='P1 PTE → 0x1a2b'; $('pt1').classList.add('act'); $('Ls').textContent='zero-filled 4 KiB frame'; }],
-          [2,()=>nos()?'Semaphore disabled! Skipping synchronization barrier inside shared memory.':'sem_init(&sem, pshared=1, 0) → counter lives inside the shared page, value 0 (any wait will block).','A counter is placed inside shared memory…',()=>nos()?'bad':'warn',async()=>{ hi('M'); wave('M',nos()?'bad':''); if(nos()){ $('lk').textContent='OFF'; $('lk').className='spill off'; $('Ls').textContent='semaphore bypassed (hazard)'; setSt('Mt','✖ UNSYNCHRONIZED','bad'); } else { $('lk').textContent='0 (LOCKED)'; $('lk').className='spill lk'; $('Ls').textContent='sem_t stored in shared page'; } }],
+          [0,'mmap(MAP_SHARED|MAP_ANONYMOUS) → kernel allocates 1 physical frame (PFN 0x1a2b) and maps it at VA 0x7f3a1000, zero-filled.','Where does shared data actually live?','',async()=>{ pop('M'); hi('M'); setSt('Mt','● MAPPED (PFN 0x1a2b)',''); $('Ps').textContent='VA 0x7f3a1000 → PFN 0x1a2b'; $('pt1').textContent='P1 PTE → 0x1a2b'; $('pt1').classList.add('act'); $('Ms').textContent='zero-filled 4 KiB frame'; }],
+          [2,()=>nos()?'Semaphore disabled! Skipping synchronization barrier inside shared memory.':'sem_init(&sem, pshared=1, 0) → counter lives inside the shared page, value 0 (any wait will block).','A counter is placed inside shared memory…',()=>nos()?'bad':'warn',async()=>{ hi('M'); wave('M',nos()?'bad':''); if(nos()){ $('lk').textContent='OFF'; $('lk').className='spill off'; $('Ms').textContent='semaphore bypassed (hazard)'; setSt('Mt','✖ UNSYNCHRONIZED','bad'); } else { $('lk').textContent='0 (LOCKED)'; $('lk').className='spill lk'; $('Ms').textContent='sem_t stored in shared page'; } }],
           [3,'fork() → Process 2 inherits the mapping: its page table points to the SAME frame PFN 0x1a2b (not copied).','Two page tables, one physical frame?','',async()=>{ hi('P'); wave('P'); pop('C'); $('pt2').textContent='P2 PTE → 0x1a2b'; $('pt2').classList.add('act'); setSt('Ct','▲ READY','warn'); $('Cs').textContent='VA 0x7f3a1000 → PFN 0x1a2b'; await wait(220); hi('C'); }],
-          [4,()=>nos()?'No sem_wait → Process 2 reads the page immediately, before Process 1 wrote anything (race condition).':'sem_wait() → value is 0, so futex(FUTEX_WAIT) puts Process 2 on a wait queue. State: BLOCKED, 0% CPU.','Will Process 2 wait, or rush in?',()=>nos()?'bad':'warn',async(inst)=>{ hi('C'); if(nos()){ setSt('Ct','✖ RACE!','bad'); $('C').classList.add('haz'); if(!inst){ pulse('C','shk'); wave('C','bad'); await fly('"" | 0?','M','C','bad'); } $('Cs').innerHTML='read <b style="color:#fda4af">"" | 0</b> (stale zeros!)'; $('Ls').textContent='stale read occurred before write'; } else { setSt('Ct','▲ BLOCKED','warn'); $('Cs').textContent='futex wait queue (0% CPU)'; $('Ls').textContent='waiters: [ PID 1002 ]'; } }],
-          [5,()=>`strcpy(shm->message, "${val('msg','Moon base')}") → Process 1 stores bytes straight into the shared frame. No syscall, no kernel copy.`,'How fast can a plain memory write be?','',async(inst,g)=>{ hi('P'); const m=val('msg','Moon base'); if(!inst){ await Promise.all([...m].map(async(c,i)=>{ await wait(i*75); if(g!==gen)return; await fly(c===' '?'␣':c,'P','M'); })); } if(g!==gen)return; $('Ms').textContent=`{ msg: "${m}", code: … }`; }],
-          [6,()=>`shm->secret_code = ${val('code','2026')} → a 4-byte store directly into the same shared physical frame.`,'One more field to fill…','',async(inst)=>{ hi('P'); const m=val('msg','Moon base'), n=val('code','2026'); if(!inst)await fly(String(n),'P','M','n'); $('Ms').textContent=`{ msg: "${m}", code: ${n} }`; }],
-          [7,()=>nos()?'No sem_post() executed → Process 2 already consumed stale data earlier.':'sem_post() → atomic increment 0→1 and futex(FUTEX_WAKE). The scheduler moves Process 2 from the wait queue to the run queue.','The lock is about to open…',()=>nos()?'bad':'ok',async()=>{ hi('M'); if(!nos()){ wave('M','ok'); $('lk').textContent='1 (WAKE)'; $('lk').className='spill op'; $('Ls').textContent='FUTEX_WAKE sent → P2 READY'; setSt('Ct','✓ READY','ok'); } else wave('M','bad'); }],
+          [4,()=>nos()?'No sem_wait → Process 2 reads the page immediately, before Process 1 wrote anything (race condition).':'sem_wait() → value is 0, so futex(FUTEX_WAIT) puts Process 2 on a wait queue. State: BLOCKED, 0% CPU.','Will Process 2 wait, or rush in?',()=>nos()?'bad':'warn',async(inst)=>{ hi('C'); if(nos()){ setSt('Ct','✖ RACE!','bad'); $('C').classList.add('haz'); if(!inst){ pulse('C','shk'); wave('C','bad'); await fly('"" | 0?','M','C','bad'); } $('Cs').innerHTML='read <b style="color:#fda4af">"" | 0</b> (stale zeros!)'; $('Ms').textContent='stale read occurred before write'; } else { setSt('Ct','▲ BLOCKED','warn'); $('Cs').textContent='futex wait queue (0% CPU)'; $('Ms').textContent='waiters: [ PID 1002 ]'; } }],
+          [5,()=>`strcpy(shm->message, "${val('msg','Moon base')}") → Process 1 stores bytes straight into the shared frame. No syscall, no kernel copy.`,'How fast can a plain memory write be?','',async(inst,g)=>{ hi('P'); const m=val('msg','Moon base'); if(!inst){ await Promise.all([...m].map(async(c,i)=>{ await wait(i*75); if(g!==gen)return; await fly(c===' '?'␣':c,'P','M'); })); } if(g!==gen)return; $('Mdata').textContent=`{ msg: "${m}", code: … }`; }],
+          [6,()=>`shm->secret_code = ${val('code','2026')} → a 4-byte store directly into the same shared physical frame.`,'One more field to fill…','',async(inst)=>{ hi('P'); const m=val('msg','Moon base'), n=val('code','2026'); if(!inst)await fly(String(n),'P','M','n'); $('Mdata').textContent=`{ msg: "${m}", code: ${n} }`; }],
+          [7,()=>nos()?'No sem_post() executed → Process 2 already consumed stale data earlier.':'sem_post() → atomic increment 0→1 and futex(FUTEX_WAKE). The scheduler moves Process 2 from the wait queue to the run queue.','The lock is about to open…',()=>nos()?'bad':'ok',async()=>{ hi('M'); if(!nos()){ wave('M','ok'); $('lk').textContent='1 (WAKE)'; $('lk').className='spill op'; $('Ms').textContent='FUTEX_WAKE sent → P2 READY'; setSt('Ct','✓ READY','ok'); } else wave('M','bad'); }],
           [8,()=>nos()?'Too late: Process 2 already consumed stale data before Process 1 wrote.':'Process 2 runs, reads msg and code directly from its mapping of the shared frame. Zero copies.','Does Process 2 see the right data?',()=>nos()?'bad':'ok',async(inst)=>{ hi('C'); const m=val('msg','Moon base'), n=val('code','2026'); if(!nos()){ if(!inst)await Promise.all([fly(m,'M','C','ok'),wait(90).then(()=>fly(String(n),'M','C','n'))]); setSt('Ct','● RUNNING','ok'); $('Cs').innerHTML=`read <b style="color:#6ee7b7">"${esc(m)}" | ${esc(n)}</b>`; } else $('Cs').innerHTML='read <b style="color:#fda4af">"" | 0</b> (data lost!)'; }],
-          [9,'sem_destroy(); munmap() → page refcount hits 0 and the frame returns to the free list.','The cleanup…',()=>nos()?'bad':'ok',async()=>{ hi('P'); wave('M',nos()?'bad':'ok'); setSt('Pt','✓ EXITED (0)','ok'); setSt('Mt','✓ FRAME FREED',nos()?'bad':'ok'); if(!nos())setSt('Ct','✓ EXITED (0)','ok'); $('Ps').textContent='munmap() done'; $('pt1').textContent='P1 PTE → unmapped'; $('pt2').textContent='P2 PTE → unmapped'; $('pt1').classList.remove('act'); $('pt2').classList.remove('act'); $('Ls').textContent='refcount = 0 · returned to free list'; win(nos()?'✖ Race condition observed — enable semaphore to synchronize':'✓ Synchronized zero-copy transfer via futex',nos()); }]
+          [9,'sem_destroy(); munmap() → page refcount hits 0 and the frame returns to the free list.','The cleanup…',()=>nos()?'bad':'ok',async()=>{ hi('P'); wave('M',nos()?'bad':'ok'); setSt('Pt','✓ EXITED (0)','ok'); setSt('Mt','✓ FRAME FREED',nos()?'bad':'ok'); if(!nos())setSt('Ct','✓ EXITED (0)','ok'); $('Ps').textContent='munmap() done'; $('pt1').textContent='P1 PTE → unmapped'; $('pt2').textContent='P2 PTE → unmapped'; $('pt1').classList.remove('act'); $('pt2').classList.remove('act'); $('Ms').textContent='refcount = 0 · returned to free list'; win(nos()?'✖ Race condition observed — enable semaphore to synchronize':'✓ Synchronized zero-copy transfer via futex',nos()); }]
         ]
       }
     ];
@@ -258,18 +267,21 @@
       $('sp').style.transform=`translateX(${p2?100:0}%)`; $('sp1').classList.toggle('act',!p2); $('sp2').classList.toggle('act',p2);
       $('mp').style.transform=`translateX(${k?100:0}%)`; $('mseg').classList.toggle('k',k); $('stg').classList.toggle('k',k); $('mp1').classList.toggle('act',!k); $('mp2').classList.toggle('act',k);
       $('ringTag').textContent=k?'▲ Ring 0 (Kernel Trap)':'● Ring 3 (User Space)'; $('ringTag').className='ring-tag'+(k?' k':'');
-      if(line<0)setPipe(-1); else if(inst)setPipe(4); else { setPipe(0); for(let i=1;i<5;i++)pipeTimers.push(setTimeout(()=>setPipe(i),i*130)); }
+      const stageMs=Math.max(70,Math.round(Number($('spd').value)/10));
+      if(line<0)setPipe(-1); else if(inst)setPipe(4); else { setPipe(0); for(let i=1;i<5;i++)pipeTimers.push(setTimeout(()=>setPipe(i),i*stageMs)); }
       const regs={rPC:'0x'+(0x401000+Math.max(line,0)*4).toString(16), rAX:k?`${SYS[sys]} (${sys})`:'—', rSP:'0x7ffe'+(0x1000-Math.max(line,0)*16).toString(16), rIR:t.slice(0,34)};
       for(const r in regs){ $(r).textContent=regs[r]; if(r==='rAX')$(r).className=k?'k':''; if(line>=0&&!inst)pulse(r,'reg-flash'); }
     }
 
     function syncUI() {
-      const M=MODES[mode], pb=$('playBtn');
-      pb.textContent=playing?'⏸ Pause':(idx>=M.steps.length?'↺ Replay':'▶ Auto play');
+      const M=MODES[mode], pb=$('playBtn'), done=idx>=M.steps.length;
+      pb.textContent=playing?'⏸ Pause':(done?'↺ Replay':'▶ Auto play');
       pb.classList.toggle('play',playing);
-      $('nextBtn').disabled=busy||playing||idx>=M.steps.length;
+      $('nextBtn').disabled=busy||playing||done;
       $('backBtn').disabled=busy||playing||idx<=0;
-      $('stepCount').textContent=`Step ${idx} / ${M.steps.length}`;
+      document.querySelectorAll('#inputs input').forEach(el=>{ el.disabled=playing||busy; });
+      const status=playing?'Playing':(done?'Complete':'Ready');
+      $('stepCount').textContent=`Step ${idx} / ${M.steps.length} · ${status}`;
       $('bar').style.width=`${idx/M.steps.length*100}%`;
       const s=M.steps[idx]; $('tease').classList.remove('rev');
       $('tt').textContent=s?s[2]:'Done. Change inputs above and replay.'; $('teaseHint').textContent=s?'(tap to peek)':'Complete';
@@ -281,8 +293,8 @@
       $('t0').classList.toggle('on',!m); $('t1').classList.toggle('on',!!m);
       $('story').innerHTML=M.story; $('midBoundary').textContent=M.bnd; $('inputs').innerHTML=M.inputs();
       $('stage').innerHTML=M.nodes(); $('fx').innerHTML=''; $('win').className='done'; $('win').textContent='';
-      $('code').innerHTML=M.code.map((l,i)=>`<div class="cl" id="c${i}"><span class="ln">${i+1}</span><span>${esc(l)}</span></div>`).join('');
-      $('lineMeta').textContent='Ready'; $('log').innerHTML='<div class="li" style="color:var(--mut)">Press <b>Auto play</b> or <b>Next</b> to start tracing syscalls.</div>';
+      $('code').innerHTML=M.code.map((l,i)=>`<div class="cl" id="c${i}" onclick="jumpLine(${i})" title="Jump to step for line ${i+1}"><span class="ln">${i+1}</span><span>${esc(l)}</span></div>`).join('');
+      $('lineMeta').textContent='Click line to jump'; $('log').innerHTML='<div class="li" style="color:var(--mut)">Press <b>Auto play</b> or <b>Next</b> to start tracing syscalls.</div>';
       $('traceCount').textContent='0 steps'; cpu(-1,'P'); syncUI(); requestAnimationFrame(drawBus);
     }
 
@@ -296,27 +308,40 @@
       cpu(line,proc,inst); await fn(inst,g); if(g!==gen)return; drawBus();
     }
 
+    async function jumpTo(target) {
+      if(busy||playing)return;
+      load(mode); busy=true;
+      for(let i=0;i<target;i++){ idx=i+1; await runStep(i,true); }
+      busy=false; syncUI();
+    }
+    function jumpLine(lineIdx) {
+      const si=MODES[mode].steps.findIndex(s=>s[0]===lineIdx);
+      if(si>=0)jumpTo(si+1);
+    }
     async function next() {
       if(busy||idx>=MODES[mode].steps.length)return false;
       busy=true; const g=gen, si=idx++; syncUI(); await runStep(si,false,g);
       if(g!==gen)return false; busy=false; syncUI(); return true;
     }
-
-    async function back() {
-      if(busy||playing||idx<=0)return;
-      const target=idx-1; load(mode); busy=true;
-      for(let i=0;i<target;i++){ idx=i+1; await runStep(i,true); }
-      busy=false; syncUI();
-    }
+    async function back() { if(!busy&&!playing&&idx>0)await jumpTo(idx-1); }
 
     async function togglePlay() {
+      playId++;
       if(playing){ playing=false; syncUI(); return; }
       if(idx>=MODES[mode].steps.length)load(mode);
-      playing=true; syncUI(); const g=gen;
-      while(playing&&g===gen&&idx<MODES[mode].steps.length){ if(!await next()||!playing||g!==gen)break; if(idx<MODES[mode].steps.length)await wait(Number($('spd').value)*.65); }
-      if(g===gen){ playing=false; syncUI(); }
+      playing=true; syncUI(); const g=gen, p=playId;
+      while(busy&&playing&&g===gen&&p===playId)await wait(40);
+      while(playing&&g===gen&&p===playId&&idx<MODES[mode].steps.length){ if(!await next()||!playing||g!==gen||p!==playId)break; if(idx<MODES[mode].steps.length)await wait(Number($('spd').value)); }
+      if(g===gen&&p===playId){ playing=false; syncUI(); }
     }
 
+    window.addEventListener('keydown',e=>{
+      if(/INPUT|TEXTAREA/.test(document.activeElement?.tagName))return;
+      if(e.code==='Space'){ e.preventDefault(); togglePlay(); }
+      else if(e.key==='ArrowRight')next();
+      else if(e.key==='ArrowLeft')back();
+      else if(e.key==='r'||e.key==='R')load(mode);
+    });
     window.addEventListener('resize',drawBus);
     load(0);
   </script>
